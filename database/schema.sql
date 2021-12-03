@@ -1,36 +1,56 @@
-DROP DATABASE IF EXISTS proposals;
-CREATE DATABASE proposals;
-USE proposals;
-/* Creating the users table*/
-CREATE TABLE `users`(
-    `id` int(5) NOT NULL auto_increment,
-    `firstname` varchar(20) NOT NULL default '',
-    `lastname` varchar(20) NOT NULL default '',
-    `password` varchar(80) NOT NULL default '',
-    `email` varchar(20) NOT NULL default '',
-    `date_joined` DATETIME NOT NULL default current_timestamp,
-    PRIMARY KEY (`id`)
-)ENGINE=MyISAM AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8mb4;
+-- MySQL dump 10.11
+--
+-- to install this database, from a terminal, type:
+-- mysql -u USERNAME -p -h SERVERNAME schema < schema.sql
+--
+-- Host: localhost    Database: bugme
+-- ------------------------------------------------------
+-- Server version   5.0.45-log
+
+
+DROP DATABASE IF EXISTS bugme;
+CREATE DATABASE bugme;
+USE bugme;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL auto_increment,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `date_joined` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4000 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
 
 LOCK TABLES `users` WRITE;
-INSERT INTO `users` (firstname,lastname,password,email)VALUES ('Jody','Harrison','$2y$10$qEg04tOZIDOZV1MVaPajHuaa7F3YqsIPRaKsT1z3VM0NsMnmR/Gi6','admin@project2.com');
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`firstname`, `lastname`, `password`, `email`) VALUES ('Group','6','$2y$10$cvsH.RtQIYP.aSDLKThywe5AymIUgnwM8z/q1Q/N3YmyPcpnTNxfi','admin@project2.com');
 UNLOCK TABLES;
 
 
-/* Creating the isssues table*/
-CREATE TABLE `issues`(
-    `id` int(5) NOT NULL auto_increment,
-    `title` varchar(50) NOT NULL default '',
-    `description` text(100) NOT NULL default '',
-    `type` varchar(15) NOT NULL default '',
-    `priority` varchar(20) NOT NULL default '',
-    `status` varchar(20) NOT NULL default 'Open',
-    `assigned_to` int(5) NOT NULL default 0,
-    `created_by` int(5) NOT NULL default 0,
-    `created` DATETIME NOT NULL default  current_timestamp,
-    `updated` DATETIME NOT NULL default  current_timestamp on update current_timestamp,
 
-    PRIMARY KEY (`id`)
-)ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4;
-    
-
+--
+-- Table structure for table `issues`
+--
+DROP TABLE IF EXISTS `issues`;
+CREATE TABLE `issues` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`title` varchar(255) NOT NULL,
+`description` text NOT NULL,
+`type` varchar(255) NOT NULL,
+`priority` varchar(255) NOT NULL,
+`status` varchar(255) NOT NULL,
+`assigned_to` int(11) NOT NULL,
+`created_by` int(11) NOT NULL,
+`created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`updated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`)
